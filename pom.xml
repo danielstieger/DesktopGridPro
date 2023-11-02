@@ -4,25 +4,25 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.vaadin.addons.example</groupId>
-    <artifactId>clock</artifactId>
+    <groupId>org.modellwerkstatt.addons</groupId>
+    <artifactId>desktopgridpro</artifactId>
     <version>1.0.0</version>
-    <name>Clock</name>
-    <description>Clock widget example for Vaadin</description>
+    <name>DesktopGridPro</name>
+    <description>DesktopGridPro for vaadin</description>
 
     <properties>
-        <vaadin.version>24.2.1</vaadin.version>
+        <vaadin.version>23.3.6</vaadin.version>
 
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <jetty.version>11.0.13</jetty.version>
+        <jetty.version>10.0.12</jetty.version>
     </properties>
 
     <organization>
-        <name>###author###</name>
+        <name>Daniel Stieger</name>
     </organization>
     <licenses>
         <license>
@@ -84,7 +84,7 @@
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-core</artifactId>
+            <artifactId>vaadin</artifactId>
             <scope>test</scope>
         </dependency>
 
@@ -113,6 +113,14 @@
             <version>4.0.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-grid-pro-flow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>flow-data</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -133,7 +141,7 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>11.0.13</version>
+                    <version>10.0.12</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -278,7 +286,7 @@
                      Note that scope needs to be runtime instead of the test scope above. -->
                 <dependency>
                     <groupId>com.vaadin</groupId>
-                    <artifactId>vaadin-core</artifactId>
+                    <artifactId>vaadin</artifactId>
                     <scope>runtime</scope>
                 </dependency>
                 <dependency>
