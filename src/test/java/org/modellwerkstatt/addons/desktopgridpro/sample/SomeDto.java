@@ -1,4 +1,4 @@
-package org.modellwerkstatt.addons.sample;
+package org.modellwerkstatt.addons.desktopgridpro.sample;
 
 import java.math.BigDecimal;
 

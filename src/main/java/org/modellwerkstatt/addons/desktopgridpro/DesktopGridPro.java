@@ -1,10 +1,9 @@
-package org.modellwerkstatt.addons;
+package org.modellwerkstatt.addons.desktopgridpro;
 
 
 import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridMultiSelectionModel;
 import com.vaadin.flow.component.grid.GridSelectionModel;
 import com.vaadin.flow.component.gridpro.GridPro;

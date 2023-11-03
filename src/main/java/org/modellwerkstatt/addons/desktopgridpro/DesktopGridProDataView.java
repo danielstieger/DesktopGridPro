@@ -1,4 +1,4 @@
-package org.modellwerkstatt.addons;
+package org.modellwerkstatt.addons.desktopgridpro;
 
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;

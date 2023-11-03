@@ -1,4 +1,4 @@
-package org.modellwerkstatt.addons.sample;
+package org.modellwerkstatt.addons.desktopgridpro.sample;
 
 
 import com.vaadin.flow.component.Key;
@@ -14,8 +14,9 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.renderer.LitRenderer;
 import com.vaadin.flow.router.Route;
-import org.modellwerkstatt.addons.DesktopGridPro;
-import org.modellwerkstatt.addons.DesktopGridProDataView;
+import org.modellwerkstatt.addons.desktopgridpro.DesktopGridPro;
+import org.modellwerkstatt.addons.desktopgridpro.DesktopGridProDataView;
+import org.modellwerkstatt.addons.desktopgridpro.sample.SomeDto;
 
 import java.math.BigDecimal;
 import java.util.*;

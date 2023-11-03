@@ -1,4 +1,4 @@
-package org.modellwerkstatt.addons;
+package org.modellwerkstatt.addons.desktopgridpro;
 
 public enum DesktopGridProVariant {
     SELECTABLE_TEXT("selectable-text");
