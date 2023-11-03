@@ -50,7 +50,7 @@ public class SomeView extends VerticalLayout {
         List<SomeDto> allData = createData(20);
 
         /* Solved: Selection from 0 not working - https://github.com/vaadin-component-factory/selection-grid-flow/pull/39 */
-        List<SomeDto> selection = allData.subList(0, 1);
+        List<SomeDto> selection = allData.subList(3, 4);
         boolean selectionInData = dataView.setNewList(grid, allData, selection);
 
         /* Solved: selection via list is not possible, right? */
@@ -91,11 +91,11 @@ public class SomeView extends VerticalLayout {
          */
 
         // funktioniert besser ...
-        Optional<SomeDto> selectedFirst = selectionModel.getFirstSelectedItem();
-        // grid.scrollToIndex(dataView.getIndex(selectedFirst.get()));
 
-        // grid.focusOnCell(selection.get(0), grid.getColumns().get(0));
-        grid.focus();
+        grid.scrollToIndex(5);
+        grid.focusOnCell(dataView.getItem(5), grid.getColumns().get(0));
+
+        // grid.focus();
 
 
         /* Open: how to do validation in editable columns, check text() below */
