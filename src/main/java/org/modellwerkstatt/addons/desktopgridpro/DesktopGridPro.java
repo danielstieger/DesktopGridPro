@@ -47,7 +47,7 @@ public class DesktopGridPro<T> extends GridPro<T> {
     @Override
     public void focus() {
         this.getElement().executeJs(
-                "modellwerkstatt_desktopgrid.focusGrid($0)",
+                "modellwerkstatt_desktopgrid.focusGrid($0, true)",
                 this.getElement());
     }
 

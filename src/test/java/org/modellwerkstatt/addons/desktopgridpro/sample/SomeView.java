@@ -37,8 +37,8 @@ public class SomeView extends VerticalLayout {
         this.add(grid);
 
 
-        List<SomeDto> allData = createData(20);
-        int rowToSelect = 3;
+        List<SomeDto> allData = createData(2000);
+        int rowToSelect = 300;
         List<SomeDto> selection = allData.subList(rowToSelect, rowToSelect + 1);
         boolean selectionInData = dataView.setNewList(grid, allData, selection);
 
@@ -86,7 +86,7 @@ public class SomeView extends VerticalLayout {
         });
 
         ShortcutRegistration btnShortcut = Shortcuts.addShortcutListener(this, () -> {
-            // Notification.show("You triggered the esc button by HK.", 5000, Notification.Position.TOP_CENTER);
+            Notification.show("You triggered the esc button by HK.", 5000, Notification.Position.TOP_CENTER);
         }, Key.ESCAPE);
         btnShortcut.setEventPropagationAllowed(false);
         btnShortcut.setBrowserDefaultAllowed(false);

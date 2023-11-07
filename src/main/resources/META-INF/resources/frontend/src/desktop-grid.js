@@ -10,20 +10,22 @@
 
 window.modellwerkstatt_desktopgrid = {
 
-    focusGrid : function(grid) {
+    focusGrid : function(grid, reschedule) {
         setTimeout(function() {
-         let editDiv = grid.shadowRoot.querySelector("[aria-selected='true'] > div[part~='editable-cell']");
-         if (editDiv) {
-             editDiv.parentElement.focus();
-             // console.log('window.turku.focusGrid() editabled, focussed on ' + editDiv);
+          let editDiv = grid.shadowRoot.querySelector("[aria-selected='true'] > div[part~='editable-cell']");
+          if (editDiv) {
+              editDiv.parentElement.focus();
 
-         } else {
-             let firstTd = grid.shadowRoot.querySelector('[aria-selected="true"] > td');
-             firstTd.focus();
-             // console.log('window.turku.focusGrid() NOT editabled, focussed on ' + firstTd);
+          } else {
+              let firstTd = grid.shadowRoot.querySelector('[aria-selected="true"] > td');
+              if (firstTd) {
+                  firstTd.focus();
 
-         }
+              } else if (reschedule) {
+                  setTimeout(() => { modellwerkstatt_desktopgrid.focusGrid(grid, false); }, 1500);
+              }
 
+          }
         }, 500);
     },
 }
