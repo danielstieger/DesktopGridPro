@@ -15,11 +15,16 @@ public class DesktopGridProDataView<DTO> {
 
     private GridListDataView currentDataView;
     private String filterForWhat = "";
+    private TextInDto<DTO> extTextInDtoColsure;
 
     public DesktopGridProDataView() {
 
     }
 
+
+    public void setFilterMethod(TextInDto<DTO> searcher) {
+        extTextInDtoColsure = searcher;
+    }
 
     // returns: need to set selections
     public boolean setNewList(Grid<DTO> grid, List<DTO> newList, List<DTO> selectedObjects) {
@@ -61,7 +66,7 @@ public class DesktopGridProDataView<DTO> {
     }
 
     private boolean applyFilterAndRefreshGrid(Collection<DTO> selection) {
-        if (isNoFilter()) {
+        if (extTextInDtoColsure == null || isNoFilter()) {
             filteredList = originalList;
             removedList = new ArrayList<>();
             return true;
@@ -73,7 +78,7 @@ public class DesktopGridProDataView<DTO> {
             int selectionsFound = 0;
 
             for (DTO item: originalList) {
-                if (textInDto(item)){
+                if (extTextInDtoColsure.textInItem(item, filterForWhat)){
                     filteredList.add(item);
                     if (selection.contains(item)) { selectionsFound++; }
                 } else {
@@ -83,15 +88,6 @@ public class DesktopGridProDataView<DTO> {
             return selection.size() == selectionsFound;
         }
     }
-
-    private boolean textInDto(DTO item){
-        String text = item.toString();
-
-        if (text.toLowerCase().contains(filterForWhat)) { return true; }
-        return false;
-    }
-
-
 
     public int getFilteredTotalCount() {
         return filteredList.size();
@@ -115,5 +111,10 @@ public class DesktopGridProDataView<DTO> {
 
     public List<DTO> getFilteredList() {
         return filteredList;
+    }
+
+
+    public static interface TextInDto<DTO> {
+        public boolean textInItem(DTO item, String text);
     }
 }
