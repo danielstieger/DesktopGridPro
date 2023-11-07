@@ -28,44 +28,31 @@ public class SomeView extends VerticalLayout {
     private DesktopGridPro<SomeDto> grid;
     private GridMultiSelectionModel<SomeDto> selectionModel;
 
-    /* Open: GridPro/SelectionGrid speed improvements, mitigate round-tripping?
-     *       js: in which cases is this.$server undefined?
-     */
-
-    /* Close: Should i rename the component SelectionGrid to DesktopGrid
-     *  yes, rename it.
-     * */
-
 
     public SomeView() {
         this.setSizeFull();
 
-        /* Open: LUMO_HIGHLIGHT_EDITABLE_CELLS not working, although present in gridglobal.css */
         configureGrid();
         grid.setSizeFull();
         this.add(grid);
 
 
-        /* Solved: I assume using grid.setItems() is ressource optimal here */
         List<SomeDto> allData = createData(20);
-
-        /* Solved: Selection from 0 not working - https://github.com/vaadin-component-factory/selection-grid-flow/pull/39 */
-        List<SomeDto> selection = allData.subList(3, 4);
+        int rowToSelect = 3;
+        List<SomeDto> selection = allData.subList(rowToSelect, rowToSelect + 1);
         boolean selectionInData = dataView.setNewList(grid, allData, selection);
 
-        /* Solved: selection via list is not possible, right? */
         LinkedHashSet<SomeDto> collectionAsSet = new LinkedHashSet<>(selection);
         selectionModel.deselectAll();
         selectionModel.updateSelection(collectionAsSet, Collections.emptySet());
 
 
-        /* Solved: onContextMenu() does the selection */
+
         GridContextMenu<SomeDto> contextMenu = new GridContextMenu<>(grid);
         contextMenu.addItem("Context menu test", event -> { Notification.show("You clicked the context menu.", 5000, Notification.Position.TOP_CENTER); });
 
 
-        // Solved: select next item on enter / shift-tab
-        // grid.
+
         grid.getElement().addEventListener("cell-edit-started", e -> {
             grid.disableGlobalEsc();
 
@@ -77,28 +64,21 @@ public class SomeView extends VerticalLayout {
         });
 
 
-        // Open: grid.getEditor().addCancelListener() is not working.
+
         grid.getElement().addEventListener("cell-edit-stopped", e -> {
             grid.enableGlobalEsc();
         });
 
 
-        /* Open: The cell is editable, but visualization is not correct
-         *       OR: how could i get the cell into edit mode?
-         *
+
+
+        /*
          * Open: The focusOnCell() is jumping when setting the selection to 1
          *       and the content is short (e.g. 20 items)
          */
-
-        // funktioniert besser ...
-
-        grid.scrollToIndex(5);
-        grid.focusOnCell(dataView.getItem(5), grid.getColumns().get(0));
-
-        // grid.focus();
-
-
-        /* Open: how to do validation in editable columns, check text() below */
+        grid.scrollToIndex(rowToSelect);
+        // grid.focusOnCell(dataView.getItem(rowToSelect), grid.getColumns().get(0));
+        grid.focus();
 
 
         Button cancelButton = new Button("ESC", e -> {
@@ -106,7 +86,7 @@ public class SomeView extends VerticalLayout {
         });
 
         ShortcutRegistration btnShortcut = Shortcuts.addShortcutListener(this, () -> {
-            Notification.show("You triggered the esc button by HK.", 5000, Notification.Position.TOP_CENTER);
+            // Notification.show("You triggered the esc button by HK.", 5000, Notification.Position.TOP_CENTER);
         }, Key.ESCAPE);
         btnShortcut.setEventPropagationAllowed(false);
         btnShortcut.setBrowserDefaultAllowed(false);
@@ -190,7 +170,7 @@ public class SomeView extends VerticalLayout {
         List<SomeDto> result = new ArrayList<>();
 
         for (int i = 0; i < amount; i++) {
-            result.add(new SomeDto(i, "Position " + i, "Article 0", BigDecimal.valueOf(i).multiply(new BigDecimal("0.2"))));
+            result.add(new SomeDto(i, "Position " + i, "Article " + i, BigDecimal.valueOf(i).multiply(new BigDecimal("0.2"))));
         }
 
         return result;

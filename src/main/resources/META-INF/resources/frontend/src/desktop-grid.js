@@ -24,6 +24,6 @@ window.modellwerkstatt_desktopgrid = {
 
          }
 
-        }, 300);
+        }, 500);
     },
 }
