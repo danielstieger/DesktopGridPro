@@ -224,4 +224,11 @@ public class DesktopGridPro<T> extends GridPro<T> {
         getThemeNames().removeAll(Stream.of(variants)
                 .map(DesktopGridProVariant::getVariantName).collect(Collectors.toList()));
     }
+
+    public void gcClean() {
+        dataCommunicatorFetchFromProvider = null;
+        dataCommunicatorGetDataProviderSize = null;
+        columnGetInternalId = null;
+        gridEscShortCut = null;
+    }
 }
