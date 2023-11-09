@@ -122,6 +122,6 @@ public class DesktopGridProDataView<DTO> {
         currentDataView = null;
         filteredList.clear();
         removedList.clear();
-        originalList.clear();
+        originalList = null;
     }
 }
