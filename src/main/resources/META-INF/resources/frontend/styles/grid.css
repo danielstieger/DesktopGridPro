@@ -9,10 +9,22 @@
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    --_lumo-grid-selected-row-color: var(--turku-grid-selected-row-color);
 }
 
 :host([theme~="dense"]) [part~="cell"] {
   min-height: var(--lumo-size-xs);
+}
+
+:host([hlevel~="1"]) [part~="cell"] {
+    background-color: var(--turku-primary-background-hl1);
+}
+:host([hlevel~="2"]) [part~="cell"] {
+    background-color: var(--turku-primary-background-hl2);
+}
+:host([hlevel~="3"]) [part~="cell"] {
+    background-color: var(--turku-primary-background-hl3);
 }
 
 :host([theme~="dense"]) [part~="editable-cell"] {
