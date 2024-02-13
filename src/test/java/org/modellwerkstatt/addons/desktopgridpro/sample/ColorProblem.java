@@ -17,20 +17,22 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.Theme;
 import org.modellwerkstatt.addons.desktopgridpro.DesktopGridPro;
 import org.modellwerkstatt.addons.desktopgridpro.DesktopGridProDataView;
-import org.modellwerkstatt.addons.desktopgridpro.sample.SomeDto;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
 
-@Route("someview")
-public class SomeView extends VerticalLayout {
+@Route("")
+public class ColorProblem extends VerticalLayout {
 
     private DesktopGridProDataView<SomeDto> dataView;
     private DesktopGridPro<SomeDto> grid;
     private GridMultiSelectionModel<SomeDto> selectionModel;
 
 
-    public SomeView() {
+    public ColorProblem() {
         this.setSizeFull();
 
         configureGrid();
@@ -48,51 +50,6 @@ public class SomeView extends VerticalLayout {
         selectionModel.updateSelection(collectionAsSet, Collections.emptySet());
 
 
-
-        GridContextMenu<SomeDto> contextMenu = new GridContextMenu<>(grid);
-        contextMenu.addItem("Context menu test", event -> { Notification.show("You clicked the context menu.", 5000, Notification.Position.TOP_CENTER); });
-
-
-
-        grid.getElement().addEventListener("cell-edit-started", e -> {
-            grid.disableGlobalEsc();
-
-            int idx = grid.getRowToSelectWhileEdit(e.getEventData());
-            if (idx > 0) {
-                grid.deselectAll();
-                grid.select(dataView.getItem(idx - 1));
-            }
-        });
-
-
-
-        grid.getElement().addEventListener("cell-edit-stopped", e -> {
-            grid.enableGlobalEsc();
-        });
-
-
-
-
-        /*
-         * Open: The focusOnCell() is jumping when setting the selection to 1
-         *       and the content is short (e.g. 20 items)
-         */
-        grid.scrollToIndex(rowToSelect);
-        // grid.focusOnCell(dataView.getItem(rowToSelect), grid.getColumns().get(0));
-        grid.focus();
-
-
-        Button cancelButton = new Button("ESC", e -> {
-            Notification.show("You clicked the esc button.", 5000, Notification.Position.TOP_CENTER);
-        });
-
-        ShortcutRegistration btnShortcut = Shortcuts.addShortcutListener(this, () -> {
-            Notification.show("You triggered the esc button by HK.", 5000, Notification.Position.TOP_CENTER);
-        }, Key.ESCAPE);
-        btnShortcut.setEventPropagationAllowed(false);
-        btnShortcut.setBrowserDefaultAllowed(false);
-
-        this.add(cancelButton);
     }
 
 
@@ -149,20 +106,6 @@ public class SomeView extends VerticalLayout {
                     return "";
                 }));
         col.setHeader(litPropName);
-        col.setResizable(true);
-
-        // editable column value
-        EditColumnConfigurator<SomeDto> editableCol = grid.addEditColumn(item -> item.value );
-        editableCol.text((item, newValue) ->
-        {
-            try {
-                item.value = new BigDecimal(newValue);
-            } catch (Exception e) {
-                Notification.show("Text not accepted! " + e.getMessage(), 4000, Notification.Position.TOP_END);
-            }
-        });
-        col = editableCol.getColumn();
-        col.setHeader("value");
         col.setResizable(true);
     }
 
