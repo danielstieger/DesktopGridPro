@@ -32,7 +32,7 @@ public class DesktopGridPro<T> extends GridPro<T> {
 
     private ShortcutRegistration gridEscShortCut;
     private boolean editPreviewMode;
-    private String colorStyle = "";
+    private String cssRules = "";
 
 
     public DesktopGridPro() {
@@ -46,13 +46,8 @@ public class DesktopGridPro<T> extends GridPro<T> {
         this.runWhenAttached();
     }
 
-    public void ensureColorStylesPresent(String[] colors) {
-        for (String col: colors) {
-            if (col == null) { break; }
-            if (colorStyle.contains(col)) { continue; }
-            colorStyle += "TkuCol" + col + "{ color: " + col + "; }";
-        }
-
+    public void ensureColorStylesPresent(String someCssRules) {
+        cssRules = someCssRules;
     }
 
     @Override
@@ -112,7 +107,7 @@ public class DesktopGridPro<T> extends GridPro<T> {
     public void runWhenAttached() {
         getElement().getNode().runWhenAttached(ui ->
                 ui.beforeClientResponse(this, context ->
-                        getElement().executeJs("modellwerkstatt_desktopgrid.onAttach(this, $0)", colorStyle)));
+                        getElement().executeJs("modellwerkstatt_desktopgrid.onAttach(this, $0)", cssRules)));
     }
 
     @Override

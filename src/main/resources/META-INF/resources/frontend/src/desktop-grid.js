@@ -51,15 +51,12 @@ window.modellwerkstatt_desktopgrid = {
             grid.querySelector('vaadin-grid-flow-selection-column').hidden = true;
         }
 
-        if (cssStyles != ""){
+        if (cssStyles != "") {
             var sheet = new CSSStyleSheet();
             sheet.replaceSync(cssStyles);
             grid.shadowRoot.adoptedStyleSheets.push(sheet);
-            console.log('modellwerkstatt_desktopgrid.onAttach() STYLE SET ' + cssStyles);
-        } else {
-            console.log('modellwerkstatt_desktopgrid.onAttach() NO STYLES TO SET ');
-
+            console.log("just added the css rules....");
         }
-
+        console.log("modellwerkstatt_desktopgrid.onAttach() with " + cssStyles);
     },
 }
