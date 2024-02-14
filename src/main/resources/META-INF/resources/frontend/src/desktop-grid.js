@@ -45,4 +45,21 @@ window.modellwerkstatt_desktopgrid = {
 
         }, 300);
     },
+
+    onAttach : function(grid, cssStyles) {
+        if (grid.querySelector('vaadin-grid-flow-selection-column')) {
+            grid.querySelector('vaadin-grid-flow-selection-column').hidden = true;
+        }
+
+        if (cssStyles != ""){
+            var sheet = new CSSStyleSheet();
+            sheet.replaceSync(cssStyles);
+            grid.shadowRoot.adoptedStyleSheets.push(sheet);
+            console.log('modellwerkstatt_desktopgrid.onAttach() STYLE SET ' + cssStyles);
+        } else {
+            console.log('modellwerkstatt_desktopgrid.onAttach() NO STYLES TO SET ');
+
+        }
+
+    },
 }
