@@ -12,16 +12,24 @@
 
     --_lumo-grid-selected-row-color: var(--turku-grid-selected-row-color);
 }
-
+/*
 :host(:not([reordering])) [part~='row'][selected] [part~='body-cell']:not([part~='details-cell']) {
   color: white !important;
   --turku-CelCol: white !important;
+} */
+
+:host([navigating]) [part~='row']:focus::before, :host([navigating]) [part~='focused-cell']:focus::before {
+    box-shadow: inset 0 0 0 2px #ACACAD !important;
 }
 
 :host([theme~="dense"]) [part~="cell"] {
   min-height: var(--lumo-size-xs);
 }
 
+/*
+ * hLevel Idea, deprecated in spring 24
+ *
+ *
 :host([hlevel~="1"]) [part~="cell"], :host([hlevel~="1"]) tbody {
     background-color: var(--turku-primary-background-hl1);
 }
@@ -30,7 +38,7 @@
 }
 :host([hlevel~="3"]) [part~="cell"], :host([hlevel~="3"]) tbody  {
     background-color: var(--turku-primary-background-hl3);
-}
+} */
 
 
 :host([theme~="dense"]) [part~="editable-cell"] {
@@ -39,11 +47,11 @@
 }
 
 :host([theme~="dense"]) {
-  font-size: var(--lumo-font-size-xs);
+  font-size: var(--lumo-font-size-s);
 }
 
 :host([theme~="dense"]) [part~="cell"] ::slotted(vaadin-grid-cell-content) {
-  padding: 0px var(--lumo-space-s);
+  padding: 0px var(--lumo-space-xs);
 }
 
 :host([theme~="dense"]:not([theme~="no-row-borders"]))
