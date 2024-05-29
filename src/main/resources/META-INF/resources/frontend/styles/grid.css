@@ -18,8 +18,14 @@
   --turku-CelCol: white !important;
 } */
 
+:host([theme~="row-stripes"]) [part~="row"]:not([odd]) [part~="body-cell"],
+:host([theme~="row-stripes"]) [part~="row"]:not([odd]) [part~="details-cell"] {
+background-image: linear-gradient(var(--turku-alternate-background), var(--turku-alternate-background));
+background-repeat: repeat-x;
+}
+
 :host([navigating]) [part~='row']:focus::before, :host([navigating]) [part~='focused-cell']:focus::before {
-    box-shadow: inset 0 0 0 2px #ACACAD !important;
+    box-shadow: inset 0 0 0 2px #ADADAD !important;
 }
 
 :host([theme~="dense"]) [part~="cell"] {
@@ -43,7 +49,7 @@
 
 :host([theme~="dense"]) [part~="editable-cell"] {
   background-color: var(--turku-primary-background);
-  color: var(--turku-grid-selected-row-color);
+  color: var(--lumo-body-text-color);
 }
 
 :host([theme~="dense"]) {
