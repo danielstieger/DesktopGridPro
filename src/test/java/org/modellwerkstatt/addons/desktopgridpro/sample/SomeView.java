@@ -48,7 +48,6 @@ public class SomeView extends VerticalLayout {
         selectionModel.updateSelection(collectionAsSet, Collections.emptySet());
 
 
-
         GridContextMenu<SomeDto> contextMenu = new GridContextMenu<>(grid);
         contextMenu.addItem("Context menu test", event -> { Notification.show("You clicked the context menu.", 5000, Notification.Position.TOP_CENTER); });
 
